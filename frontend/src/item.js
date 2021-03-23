@@ -10,12 +10,12 @@ class Item{
         this.element = document.createElement('div')
         this.element.id = `item-${this.id}`
         this.itemList = document.getElementById('item-list')
+        this.element.addEventListener('click', this.handleListClick)
 
         Item.all.push(this)
     }
 
     attachToDom(){
-        console.log(this)
         this.itemList.append(this.fullRender())
     }
     
@@ -37,6 +37,37 @@ class Item{
         this.description = description
         this.name = name 
         this.fullRender()
+
+    }
+
+    addUpdateItemFields(itemId){
+        let item = document.querySelector(`#item-${itemId} li`)
+        let updateForm = `
+        <input type="number" value="${this.price}" name="price" id="update-price-${itemId}" min="0" step=".01">
+        <input type="text" name="name" value="${this.name}" id="update-name-${itemId}">
+        <input type="text" name="description" value="${this.description}" id="update-description-${itemId}">
+        `
+        let formDiv = document.createElement('div')
+        formDiv.id = `update-form-${itemId}`
+        formDiv.innerHTML = updateForm
+        item.append(formDiv)
+    }
+    
+    handleListClick = (e) => {
+        if (e.target.className === "delete"){
+            let id = e.target.dataset.id
+             itemsAdapter.deleteItem(id)
+        } else if(e.target.className === 'update'){
+             let itemId = e.target.dataset.id
+             e.target.className = "save"
+             e.target.innerText = "Save"
+             this.addUpdateItemFields(itemId)
+         } else if(e.target.className === 'save'){
+             let itemId = e.target.dataset.id
+             e.target.className = "update"
+             e.target.innerText = "Update"
+             itemsAdapter.sendPatchRequest(itemId)
+         }
 
     }
 

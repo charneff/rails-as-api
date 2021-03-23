@@ -49,5 +49,56 @@ class ItemsAdapter{
         let form = document.getElementById(`update-form-${itemId}`)
         form.remove()
     }
+
+    deleteItem(id){
+        // remove from db
+        let configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        }
+    
+        fetch(`http://localhost:3000/items/${id}`, configObj)
+        .then(res => res.json())
+        .then(json => {
+            alert(json.message)
+        })
+        // remove from dom
+        let item = document.getElementById(`item-${id}`)
+        item.remove()
+    }
+
+    handleFormSubmit(e){
+        e.preventDefault()
+        const price = document.getElementById('item-price').value
+        const description = document.getElementById('item-description').value
+        const name = document.getElementById('item-name').value
+    
+        let newItemObj = {
+            name,
+            description,
+            price
+        }
+    
+        let configObj = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(newItemObj)
+        }
+    
+        fetch('http://localhost:3000/items', configObj)
+        .then(res => res.json())
+        .then(json => {
+            let item = new Item(json.data.attributes)
+            item.attachToDom()
+        })
+    
+        itemForm.reset()
+    }
 }
 
