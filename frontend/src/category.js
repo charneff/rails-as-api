@@ -32,14 +32,23 @@ class Category{
     get items(){
         return Item.all.filter(i => i.category_id == this.id)
     }
+
+    static find(id){
+        return Category.all.find(c => c.id == id)
+    }
     
     sortedItems(){
         return this.items.sort((a,b) => a.price - b.price)
     }
 
-    displayItems = () => {
-        // console.log(this)
+    displayItems = (e) => {
+        const catList = document.getElementById('category-list')
         const itemList = document.getElementById('item-list')
+        let cats = catList.querySelectorAll('li h3')
+        cats.forEach(cat => {
+            cat.style.color = "black"
+        })
+        e.target.style.color = "red"
         itemList.innerHTML = ""
         this.items.forEach(i => {
             i.attachToDom()
@@ -53,8 +62,14 @@ class Category{
         }else{
             seeAllBtn = document.getElementById("all-btn")
         }
-        seeAllBtn.addEventListener("click", Item.resetAllItems)
+        seeAllBtn.addEventListener("click", this.reset)
 
 
+    }
+
+    reset = () => {
+        let catEl = document.getElementById(`category-${this.id}`)
+        catEl.children[0].style.color = "black"
+        Item.resetAllItems()
     }
 }
