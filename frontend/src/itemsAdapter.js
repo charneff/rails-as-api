@@ -101,6 +101,7 @@ class ItemsAdapter{
         })
     
         itemForm.reset()
+
     }
 }
 
