@@ -87,7 +87,5 @@ class Item{
              e.target.innerText = "Update"
              itemsAdapter.sendPatchRequest(itemId)
          }
-
     }
-
 }

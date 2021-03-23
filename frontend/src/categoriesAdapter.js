@@ -7,7 +7,7 @@ class CategoriesAdapter{
         fetch(this.baseUrl)
         .then(res => res.json())
         .then(response => {
-            console.log(response)
+            // console.log(response)
             response.data.forEach(el =>{
                 this.sanitizeAndInitializeCategory(el)
             })

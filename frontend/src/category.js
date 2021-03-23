@@ -42,17 +42,21 @@ class Category{
     }
 
     displayItems = (e) => {
+        
         const catList = document.getElementById('category-list')
         const itemList = document.getElementById('item-list')
         let cats = catList.querySelectorAll('li h3')
+
         cats.forEach(cat => {
             cat.style.color = "black"
         })
+
         e.target.style.color = "red"
         itemList.innerHTML = ""
         this.items.forEach(i => {
             i.attachToDom()
         })
+
         let seeAllBtn = document.getElementById("all-btn")
         if (!seeAllBtn){
             seeAllBtn = document.createElement('button')
@@ -63,8 +67,6 @@ class Category{
             seeAllBtn = document.getElementById("all-btn")
         }
         seeAllBtn.addEventListener("click", this.reset)
-
-
     }
 
     reset = () => {

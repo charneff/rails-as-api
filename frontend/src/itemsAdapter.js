@@ -65,6 +65,9 @@ class ItemsAdapter{
         .then(json => {
             alert(json.message)
         })
+        //remove from Item.all and reassign
+        Item.all = Item.all.filter(i => i.id != id)
+        
         // remove from dom
         let item = document.getElementById(`item-${id}`)
         item.remove()
