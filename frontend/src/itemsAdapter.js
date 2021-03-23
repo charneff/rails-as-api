@@ -101,6 +101,11 @@ class ItemsAdapter{
         })
     
         itemForm.reset()
+        const newFormButton = document.getElementById('new-form-btn')        
+        const formContainer = document.getElementById('new-form-container')
+        formContainer.hidden = true
+        newFormButton.hidden = false
+        newFormButton.addEventListener('click', hideBtnLoadForm)
 
     }
 }

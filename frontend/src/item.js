@@ -30,6 +30,7 @@ class Item{
 
     attachToDom(){
         this.itemList.append(this.fullRender())
+        this.addEventListeners()
     }
     
     fullRender(){
