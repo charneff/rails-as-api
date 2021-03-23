@@ -2,17 +2,30 @@
 class Item{
     static all = []
 
-    constructor({name, description, price, id}){
+    constructor({name, description, price, id, category_id}){
         this.name = name
         this.description = description 
         this.price = price
         this.id = id
+        this.category_id = category_id
         this.element = document.createElement('div')
         this.element.id = `item-${this.id}`
-        this.itemList = document.getElementById('item-list')
-        this.element.addEventListener('click', this.handleListClick)
+        // this.itemList = document.getElementById('item-list')
+        // this.element.addEventListener('click', this.handleListClick)
 
         Item.all.push(this)
+    }
+
+    get itemList(){
+        return document.getElementById('item-list')
+    }
+
+    static findById(id){
+        return Item.all.find(item => item.id == id)
+    }
+
+    addEventListeners(){
+        this.element.addEventListener('click', this.handleListClick)
     }
 
     attachToDom(){
@@ -38,6 +51,9 @@ class Item{
         this.name = name 
         this.fullRender()
 
+    }
+    static resetAllItems(){
+        Item.all.forEach(el => el.attachToDom())
     }
 
     addUpdateItemFields(itemId){

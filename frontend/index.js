@@ -1,5 +1,6 @@
 const itemForm = document.getElementById('item-form')
 const itemsAdapter = new ItemsAdapter
+const categoriesAdapter = new CategoriesAdapter
 
 // function handleFormSubmit(e){
 //     e.preventDefault()
@@ -125,5 +126,6 @@ const itemsAdapter = new ItemsAdapter
 
 document.addEventListener('DOMContentLoaded', () => {
     itemsAdapter.fetchItems()
+    categoriesAdapter.fetchCategories()
     itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
 })

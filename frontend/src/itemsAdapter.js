@@ -60,7 +60,7 @@ class ItemsAdapter{
             }
         }
     
-        fetch(`http://localhost:3000/items/${id}`, configObj)
+        fetch(this.baseUrl + `/${id}`, configObj)
         .then(res => res.json())
         .then(json => {
             alert(json.message)
@@ -91,7 +91,7 @@ class ItemsAdapter{
             body: JSON.stringify(newItemObj)
         }
     
-        fetch('http://localhost:3000/items', configObj)
+        fetch(this.baseUrl, configObj)
         .then(res => res.json())
         .then(json => {
             let item = new Item(json.data.attributes)
