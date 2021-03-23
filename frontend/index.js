@@ -1,6 +1,21 @@
 const itemForm = document.getElementById('item-form')
 const itemsAdapter = new ItemsAdapter
 const categoriesAdapter = new CategoriesAdapter
+const newFormButton = document.getElementById('new-form-btn')
+
+function hideBtnLoadForm(e){
+    e.target.hidden = true
+    const newForm = document.getElementById('new-form-container')
+    newForm.hidden = false
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    itemsAdapter.fetchItems()
+    categoriesAdapter.fetchCategories()
+    itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
+    newFormButton.addEventListener('click', hideBtnLoadForm)
+})
+
 
 // function handleFormSubmit(e){
 //     e.preventDefault()
@@ -122,10 +137,3 @@ const categoriesAdapter = new CategoriesAdapter
 //         itemsAdapter.sendPatchRequest(itemId)
 //     }
 // }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    itemsAdapter.fetchItems()
-    categoriesAdapter.fetchCategories()
-    itemForm.addEventListener('submit', itemsAdapter.handleFormSubmit)
-})

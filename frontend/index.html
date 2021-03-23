@@ -21,6 +21,7 @@
 
 
         <button id="new-form-btn">Add a new item</button>
+        
         <div id="new-form-container" hidden="true">
             <h3>Add a new Item:</h3>
             <form id="item-form">
@@ -29,7 +30,12 @@
                 <label for="item-description">Description:</label>
                 <input type="text" name="description" id="item-description"><br><br>
                 <label for="item-category">Category:</label>
-                <input type="text" name="category" id="item-category"><br><br>
+                <!-- <input type="text" name="category" id="item-category"><br><br> -->
+                <select name="category" id="category">
+                    <option name="category_id" value="1">Fruit</option>
+                    <option name="category_id" value="2">Veggies</option>
+                    <option name="category_id" value="3">Dairy</option>
+                </select>
                 <label for="item-price">Price:</label>
                 <input type="number" name="price" id="item-price" min="0" step=".01"><br><br>
                 <input type="submit" value="Create">

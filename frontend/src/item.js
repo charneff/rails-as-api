@@ -54,6 +54,7 @@ class Item{
     }
     static resetAllItems(){
         Item.all.forEach(el => el.attachToDom())
+        document.getElementById("all-btn").remove()
     }
 
     addUpdateItemFields(itemId){

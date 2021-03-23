@@ -70,16 +70,18 @@ class ItemsAdapter{
         item.remove()
     }
 
-    handleFormSubmit(e){
+    handleFormSubmit = (e) => {
         e.preventDefault()
         const price = document.getElementById('item-price').value
         const description = document.getElementById('item-description').value
         const name = document.getElementById('item-name').value
+        const category_id = document.getElementById('category').value
     
         let newItemObj = {
             name,
             description,
-            price
+            price,
+            category_id
         }
     
         let configObj = {
