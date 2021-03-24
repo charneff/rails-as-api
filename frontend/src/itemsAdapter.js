@@ -65,14 +65,14 @@ class ItemsAdapter{
         .then(json => {
             alert(json.message)
         })
-        //remove from Item.all and reassign
+        //remove from front end array
         Item.all = Item.all.filter(i => i.id != id)
-        
+
         // remove from dom
         let item = document.getElementById(`item-${id}`)
         item.remove()
     }
-
+// importance of arrw function
     handleFormSubmit = (e) => {
         e.preventDefault()
         const price = document.getElementById('item-price').value

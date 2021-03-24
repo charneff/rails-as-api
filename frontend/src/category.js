@@ -41,17 +41,20 @@ class Category{
         return this.items.sort((a,b) => a.price - b.price)
     }
 
+    // arrow function important
     displayItems = (e) => {
         
         const catList = document.getElementById('category-list')
         const itemList = document.getElementById('item-list')
-        let cats = catList.querySelectorAll('li h3')
 
+        // =================STYLING======================//
+        let cats = catList.querySelectorAll('li h3')
         cats.forEach(cat => {
             cat.style.color = "black"
         })
-
         e.target.style.color = "red"
+        // =================END STYLING======================//
+
         itemList.innerHTML = ""
         this.items.forEach(i => {
             i.attachToDom()
@@ -68,7 +71,7 @@ class Category{
         }
         seeAllBtn.addEventListener("click", this.reset)
     }
-
+    // important arrow function
     reset = () => {
         let catEl = document.getElementById(`category-${this.id}`)
         catEl.children[0].style.color = "black"
