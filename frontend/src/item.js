@@ -51,7 +51,7 @@ class Item{
         this.description = description
         this.name = name 
         this.fullRender()
-
+        this.addEventListeners()
     }
 
     static resetAllItems(){
@@ -73,19 +73,17 @@ class Item{
     }
     
     handleListClick = (e) => {
+        let id = e.target.dataset.id
         if (e.target.className === "delete"){
-            let id = e.target.dataset.id
              itemsAdapter.deleteItem(id)
         } else if(e.target.className === 'update'){
-             let itemId = e.target.dataset.id
              e.target.className = "save"
              e.target.innerText = "Save"
-             this.addUpdateItemFields(itemId)
+             this.addUpdateItemFields(id)
          } else if(e.target.className === 'save'){
-             let itemId = e.target.dataset.id
              e.target.className = "update"
              e.target.innerText = "Update"
-             itemsAdapter.sendPatchRequest(itemId)
+             itemsAdapter.sendPatchRequest(id)
          }
     }
 }
